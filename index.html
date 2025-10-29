@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Network Authentication Form</title>
   <style>
-    /* === BODY & CENTERING === */
+    /* === CENTERING FIX === */
     body {
       font-family: Arial, sans-serif;
       background-color: #fff;
@@ -26,22 +26,22 @@
       width: 100%;
     }
 
-    /* === TOP & BOTTOM TEXT === */
+    /* === TEXT (EXACT MATCH) === */
     .top-text, .success-top {
-      font-size: 17px;
+      font-size: 16px;
       color: #333;
       margin-bottom: 30px;
     }
     .bottom-text, .success-bottom {
       position: absolute;
       bottom: 30px;
-      font-size: 17px;
+      font-size: 16px;
       text-align: center;
       width: 100%;
       color: #555;
     }
 
-    /* === LOGIN FORM CONTAINER === */
+    /* === FORM CONTAINER (EXACT MATCH) === */
     .container, .success-container {
       text-align: center;
       border: 1px solid #eee;
@@ -49,7 +49,6 @@
       border-radius: 4px;
       box-shadow: 0 0 3px rgba(0,0,0,0.1);
       width: 280px;
-      background: #fff;
     }
 
     .logo-img, .success-logo-img {
@@ -75,17 +74,17 @@
       box-sizing: border-box;
     }
 
-    /* === LOGIN & LOGOUT BUTTONS – SAME STYLE === */
+    /* === LOGIN & LOGOUT BUTTONS — IDENTICAL === */
     button, .logout-btn {
       width: 100%;
       background-color: #4CAF50;
       color: white;
-      padding: 12px 0;
+      padding: 10px;
       border: none;
-      border-radius: 6px; /* Slight rounded corners */
+      border-radius: 4px; /* Same slight rounded corners */
       font-size: 16px;
       cursor: pointer;
-      margin: 10px 0;
+      margin: 10px 0 0;
       transition: background 0.2s;
     }
 
@@ -136,24 +135,23 @@
       line-height: 1.4;
     }
 
-    /* === SUCCESS IMAGE – LARGER & PERFECT FIT === */
+    /* === SUCCESS IMAGE (60px, PERFECT) === */
     .success-check-img {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       margin: 25px auto;
       display: block;
       border-radius: 50%;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       object-fit: cover;
     }
   </style>
 </head>
 <body>
 
-  <!-- === LOGIN SECTION === -->
+  <!-- === LOGIN FORM (CENTERED) === -->
   <div class="login-wrapper">
     <div class="top-text">Thinkers : Doers : Leaders</div>
-
     <div class="container">
       <img src="https://i.ibb.co/KST3vYh/Image-28-10-2025-at-09-31.png" alt="Logo" class="logo-img">
       <h3>Network Authentication Form</h3>
@@ -169,7 +167,6 @@
       </p>
       <p id="response"></p>
     </div>
-
     <div class="bottom-text">
       Curiosity : Leadership : Accountability : Innovation : Responsible Citizenship : Excellence
     </div>
@@ -183,8 +180,8 @@
       <div class="success-message">
         You have successfully logged in to<br>use the internet.
       </div>
-      <!-- Larger, perfectly fitting success image -->
       <img src="https://i.ibb.co/k64r7DyW/yourimagename.jpg" alt="Success" class="success-check-img">
+      <!-- LOGOUT BUTTON — SAME AS LOGIN -->
       <button class="logout-btn">Logout</button>
       <div class="success-portal">
         <a href="https://172.16.200.3:65040/userportal/webpages/myaccount/login.jsp" target="_blank">
@@ -224,7 +221,7 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      responseEl.textContent = ''; // No "Submitting..." message
+      responseEl.textContent = ''; // No message
 
       const formData = new FormData(form);
       const ip = await getUserIP();

